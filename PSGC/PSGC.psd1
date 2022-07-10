@@ -3,7 +3,7 @@
 	RootModule = 'PSGC.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '1.0.0'
+	ModuleVersion = '1.1.0'
 	
 	# ID used to uniquely identify this module
 	GUID = '21619845-bb15-4bc6-a3bb-752640018e23'
@@ -40,7 +40,10 @@
 	
 	# Functions to export from this module
 	FunctionsToExport = @(
+		'Convert-PSGCLetterValue'
+		'Get-PSGCSumOfDigits'
 		'Resolve-PSGCFormula'
+		'Resolve-PSGCGade'
 	)
 	
 	# Cmdlets to export from this module
