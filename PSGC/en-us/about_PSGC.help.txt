@@ -1,0 +1,11 @@
+﻿TOPIC
+	about_PSGC
+	
+SHORT DESCRIPTION
+	Explains how to use the PSGC powershell module
+	
+LONG DESCRIPTION
+	<Insert Content here>
+
+KEYWORDS
+	PSGC
