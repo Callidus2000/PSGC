@@ -9,13 +9,13 @@
 	GUID = '21619845-bb15-4bc6-a3bb-752640018e23'
 	
 	# Author of this module
-	Author = 'X13SPI'
+	Author = 'Sascha Spiekermann'
 	
 	# Company or vendor of this module
 	CompanyName = 'MyCompany'
 	
 	# Copyright statement for this module
-	Copyright = 'Copyright (c) 2022 X13SPI'
+	Copyright = 'Copyright (c) 2022 Sascha Spiekermann'
 	
 	# Description of the functionality provided by this module
 	Description = 'Powershell Geocaching Helper'
@@ -39,7 +39,9 @@
 	# FormatsToProcess = @('xml\PSGC.Format.ps1xml')
 	
 	# Functions to export from this module
-	FunctionsToExport = ''
+	FunctionsToExport = @(
+		'Resolve-PSGCFormula'
+	)
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = ''
@@ -63,13 +65,13 @@
 		PSData = @{
 			
 			# Tags applied to this module. These help with module discovery in online galleries.
-			# Tags = @()
+			Tags = @('geocaching',"geocache",'groundspeak')
 			
 			# A URL to the license for this module.
-			# LicenseUri = ''
+			LicenseUri = 'https://github.com/Callidus2000/PSGC/blob/master/LICENSE'
 			
 			# A URL to the main website for this project.
-			# ProjectUri = ''
+			ProjectUri = 'https://github.com/Callidus2000/PSGC'
 			
 			# A URL to an icon representing this module.
 			# IconUri = ''
