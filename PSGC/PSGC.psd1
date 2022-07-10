@@ -41,7 +41,7 @@
 	# Functions to export from this module
 	FunctionsToExport = @(
 		'Convert-PSGCLetterValue'
-		'Get-PSGCSumOfDigits'
+		'Get-PSGCSumOfDigit'
 		'Resolve-PSGCFormula'
 		'Resolve-PSGCGade'
 	)

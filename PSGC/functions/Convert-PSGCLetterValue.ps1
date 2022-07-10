@@ -60,7 +60,7 @@
         switch ($op) {
             'join' { $currentValue = $currentValue -join '' }
             'singleDigit' {
-                $currentValue = $currentValue  | ForEach-Object { Get-PSGCSumOfDigits $_ -ResultLength 1} }
+                $currentValue = $currentValue  | ForEach-Object { Get-PSGCSumOfDigit $_ -ResultLength 1} }
                 'sum' { ($currentValue|Measure-Object -Sum).Sum }
                 'toString' { $currentValue = $currentValue |Out-String }
             }
