@@ -16,4 +16,7 @@
         Convert-PSGCLetterValue "ABCz" -Operation join -Verbose|Should -Be "12326"
         Convert-PSGCLetterValue "ABCz" -Operation singleDigit,join -Verbose | Should -Be "1238"
     }
+    It "Use reverse letter order"     {
+        Convert-PSGCLetterValue "zyx" -Operation join -PositionMatrix "zyxwvutsrqponmlkjihgfedcba" -Verbose | Should -Be "123"
+    }
 }

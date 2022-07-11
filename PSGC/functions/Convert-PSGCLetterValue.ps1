@@ -22,6 +22,11 @@
     sum - ABC > 123 > 6
     join - joins the values to a string
 
+    .PARAMETER PositionMatrix
+    String with representatives of each letter, position-index will be used as letter-value.
+    Defaults to "abcdefghijklmnopqrstuvwxyz", for reverse use
+    "zyxwvutsrqponmlkjihgfedcba"
+
     .EXAMPLE
      Convert-PSGCLetterValue "ABCz"
 
@@ -42,29 +47,32 @@
     #>
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true,Position=1,ParameterSetName="string")]
+        [Parameter(Mandatory = $true, Position = 1, ParameterSetName = "string")]
         [string]$Word,
-        [Parameter(Mandatory=$true,Position=1,ParameterSetName="charArray")]
+        [Parameter(Mandatory = $true, Position = 1, ParameterSetName = "charArray")]
         [char[]]$Character,
         [validateset('none', 'singleDigit', 'sum', 'join')]
-        [string[]]$Operation='none'
+        [string[]]$Operation = 'none',
+        [string]$PositionMatrix = "abcdefghijklmnopqrstuvwxyz"
     )
-    if ($Character){
+    if ($Character) {
         Write-PSFMessage "Combining Characters to string to lowerCase them"
         $Word = $Character -join ''
     }
     $Word = $Word.ToLower()
-    $currentValue = [int[]][char[]]$Word  | ForEach-Object { $_ - 96 } | Where-Object { $_ -ge 0 }
-    foreach ($op in $Operation){
-        Write-PSFMessage     "Operation: $op, Input= $currentValue"
+    $PositionMatrix = $PositionMatrix.ToLower()
+    $currentValue = [char[]]$Word  | ForEach-Object { $PositionMatrix.IndexOf($_) + 1 } | Where-Object { $_ -ge 0 }
+    foreach ($op in $Operation) {
+        Write-PSFMessage "Operation: $op, Input= $currentValue"
         switch ($op) {
             'join' { $currentValue = $currentValue -join '' }
             'singleDigit' {
-                $currentValue = $currentValue  | ForEach-Object { Get-PSGCSumOfDigit $_ -ResultLength 1} }
-                'sum' { ($currentValue|Measure-Object -Sum).Sum }
-                'toString' { $currentValue = $currentValue |Out-String }
+                $currentValue = $currentValue  | ForEach-Object { Get-PSGCSumOfDigit $_ -ResultLength 1 }
             }
-            Write-PSFMessage     "Operation: $op, Output= $currentValue"
+            'sum' { ($currentValue | Measure-Object -Sum).Sum }
+            'toString' { $currentValue = $currentValue | Out-String }
+        }
+        Write-PSFMessage     "Operation: $op, Output= $currentValue"
     }
     return $currentValue
 }
