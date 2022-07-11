@@ -95,7 +95,7 @@ All prerequisites will be installed automatically.
 ## Usage
 ### Formula Evaluation
 ```Powershell
-# function Resolve-PSGCFormula 
+# function Resolve-PSGCFormula
 # Takes a formula (e.g. for final coordinates) and a Hashtable of well known values and computes the formula.
 $knownParameter = @{
             "a"=1
@@ -109,6 +109,32 @@ Resolve-PSGCFormula "N54° 38.(a + c)(b - 3)(d -4)  E009° 57.(b - a)(e + c)(a +
 Returns "N54° 38.721  E009° 57.486"
 ```
 
+### Convert Letters to their value (A=1,B=2,C=3,...)
+```Powershell
+Convert-PSGCLetterValue "ABCz"
+
+# returns @(1,2,3,26)
+
+Convert-PSGCLetterValue "ABCz" -Operation singleDigit
+
+# returns @(1,2,3,8)
+
+Convert-PSGCLetterValue "ABCz" -Operation join
+
+# returns "12326"
+```
+
+### Calculate the sum of digits of a given digit
+```Powershell
+Get-PSGCSumOfDigit "9999999999999999999999999"
+# Returns 225 ((25 * 9)= 225)
+
+Get-PSGCSumOfDigit "789" -ResultLength 2
+# Returns 24 (7+8+9)
+
+Get-PSGCSumOfDigit "789" -ResultLength 1
+#Returns 6 (7+8+9=24, 2+4=6)
+```
 
 <!-- ROADMAP -->
 ## Roadmap
