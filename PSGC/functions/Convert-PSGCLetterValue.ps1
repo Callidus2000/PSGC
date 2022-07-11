@@ -69,7 +69,7 @@
             'singleDigit' {
                 $currentValue = $currentValue  | ForEach-Object { Get-PSGCSumOfDigit $_ -ResultLength 1 }
             }
-            'sum' { ($currentValue | Measure-Object -Sum).Sum }
+            'sum' { $currentValue= ($currentValue | Measure-Object -Sum).Sum }
             'toString' { $currentValue = $currentValue | Out-String }
         }
         Write-PSFMessage     "Operation: $op, Output= $currentValue"

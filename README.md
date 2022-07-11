@@ -136,6 +136,51 @@ Get-PSGCSumOfDigit "789" -ResultLength 1
 #Returns 6 (7+8+9=24, 2+4=6)
 ```
 
+### Gade
+"Gade" is the person that made this clever system.
+
+A Danish enthusiastic geocacher, which itself has its own radio show about geocaching every Monday night.
+
+Gade found it an honor that a cache in Netherlands is made with his name.
+If you have  translated  his name into English it  means Mr. Street.
+
+To find the geocache, you have to find some numbers. E.g. you could have to
+convert the letters from a word to their Values.
+As an example "MyCache" would result in  the values 13, 25, 3, 1, 3, 8 and 5.
+When you have found the numbers, do this:
+
+Sort the **individual** digits - low to high.
+If, for instance, the numbers you found were 13, 25, 3, 1, 3, 8 and 5 sort the digits like this: 112333558
+Pay attention that digits may be contained more than once!
+In the final result every digit from 1234567890 has to be included.
+Theirfor complete the line, with the missing digits 112333558*04679* now you have:
+11233355804679
+
+Now take the letters from the alphabet and write them below:
+11233355804679
+abcdefghijklmn
+
+That makes a=1,b=1,c=2,d=3,e=3,f=3,g=5,h=5,i=8,j=0,k=4,l=6,m=7,n=9
+
+Nice and complex, right? And nasty if you want to try a few solution attempts for a mystery cache.
+
+Use the module and it's easy:
+```Powershell
+Resolve-PSGCGade "MyCache" -Verbose -output formulaString
+
+# Returns a=1,b=1,c=2,d=3,e=3,f=3,g=5,h=5,i=8,j=0,k=4,l=6,m=7,n=9
+```
+
+Combined with other functions it can be so easy:
+```Powershell
+$sumOfDigits=Convert-PSGCLetterValue -Word "sport" # =1916151820
+$hash = Resolve-PSGCGade -Number "$sumOfDigits" #=a=0,b=1,c=1,d=1,e=1,f=2,g=5,h=6,i=8,j=9,k=3,l=4,m=7
+
+Resolve-PSGCFormula -Formula 'N51° 29.e(j-g)b E10° 47.(f-d)k(i-h)' -KnownValues $hash
+# N51° 29.141 E10° 47.132
+```
+
+
 <!-- ROADMAP -->
 ## Roadmap
 New features will be added if any of my scripts need it ;-)
