@@ -135,6 +135,16 @@ Get-PSGCSumOfDigit "789" -ResultLength 2
 Get-PSGCSumOfDigit "789" -ResultLength 1
 #Returns 6 (7+8+9=24, 2+4=6)
 ```
+### Fill in known values
+Imaging this: you've got your result for the cache ("11345") and the hint "This is ABCDE" and a formula. The formula can be solved by using `Resolve-PSGCFormula`, but how to create the needed hashtable for it? Use `ConvertTo-PSGCKnownValuesTable` for it.
+
+```Powershell
+$knownValues=ConvertTo-PSGCKnownValuesTable -NumberString "11345" -Placeholder "abcde"
+
+#Returns @{ a = "1"; b = "1"; c = "3"; d = "4"; e = "5" }
+
+```
+
 
 ### Gade
 "Gade" is the person that made this clever system.

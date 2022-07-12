@@ -55,7 +55,7 @@
         }
     }
     $stringOfDigits = $einzelZahlenSortiert -join ''
-    $mappingLetters = (97..(96 + $stringOfDigits.Length)) | foreach-object { [char]$_ } | Join-String ''
+    $mappingLetters = (97..(96 + $stringOfDigits.Length)) | foreach-object { [char]$_ } | Join-String -Separator ''
     switch ($Output) {
         "string" { return $($einzelZahlenSortiert -join '') }
         "twoStrings" { return $($stringOfDigits, $mappingLetters) }
@@ -68,20 +68,10 @@
         }
         "hashtable" {
             Write-PSFMessage "Create hashtable"
-            $resultHash=[ordered]@{}
-            for ($i = 0; $i -lt $stringOfDigits.Length; $i++) {
-                $resultHash."$($mappingLetters[$i])"="$($stringOfDigits[$i])"
-            }
+            $resultHash=ConvertTo-PSGCKnownValuesTable -NumberString $stringOfDigits -PlaceHolder $mappingLetters
             Write-PSFMessage "result=$($resultHash|ConvertTo-Json -Compress)"
             return $resultHash
         }
         Default {}
-    }
-    Write-PSFMessage "$($einzelZahlenSortiert -join '')"
-    Write-PSFMessage "abcdefghijkl"
-    for ($index = 0; $index -lt $einzelZahlenSortiert.count; $index++) {
-        # Write-PSFMessage "$([char]($index + 97))=$($einzelZahlenSortiert[$index])"
-        Set-Variable -Name "$([char]($index + 97))" -Value ([int]($einzelZahlenSortiert[$index])) -Scope Global
-        # $hash.add("$([char]($i + 97))", "$($einzelZahlenSortiert[$i])")
     }
 }
