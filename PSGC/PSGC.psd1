@@ -3,7 +3,7 @@
 	RootModule = 'PSGC.psm1'
 
 	# Version number of this module.
-	ModuleVersion = '1.2.0'
+	ModuleVersion = '1.2.1'
 
 	# ID used to uniquely identify this module
 	GUID = '21619845-bb15-4bc6-a3bb-752640018e23'

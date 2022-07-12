@@ -37,9 +37,14 @@
     for ($i = 0; $i -lt $PlaceHolder.Length -and $i -lt $NumberString.Length; $i++) {
         # Query current letter
         $key = $PlaceHolder[$i]
+
         # Check if it's a letter from a-z, otherwise continue in the loop
         if ($key -notmatch '[a-z]') { continue }
-        $resultHash."$key" = "$($NumberString[$i])"
+        if ($NumberString[$i] -notmatch '[0-9]') { continue }
+        $value = [convert]::ToInt32( $NumberString[$i], 10)
+        # Write-Host "`$i=$i;`$key=$key;`$value=$value"
+        # Write-Host "`$i=$($i.gettype());`$key=$($key.gettype());`$value=$($value.gettype())"
+        $resultHash."$key" = $value
     }
     Write-PSFMessage "result=$($resultHash|ConvertTo-Json -Compress)"
     $resultHash
